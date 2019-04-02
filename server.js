@@ -17,11 +17,18 @@ mongoose.connect("mongodb://localhost:27017/reddit-clone", {useNewUrlParser: tru
 
 
 //Routes
+app.use("/api",expressJwt({secret:process.env.SECRET})) 
+app.use("/auth" , require("./routes/authRouter.js"))
+app.use("/public" , require("./routes/publicRouter.js"))
+app.use("/api/posts" , require("./routes/postRouter.js"))
 
 
 //Error handling
 app.use((err,req,res,next) => {
     console.log(err)
+    if(err.name === "UnauthorizedError"){
+        res.status(err.status)
+    }
     return res.send({errMsg: err.message})
 })
 

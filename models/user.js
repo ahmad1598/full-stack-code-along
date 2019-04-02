@@ -58,7 +58,7 @@ userSchema.methods.checkPassword = function(passwordAttempt, callback) {
 }
 
 //if they successfully loged in , we need to delete password and not return it to front end
-userSchema.method.withoutPassword = function() {
+userSchema.methods.withoutPassword = function() {
     const user = this.toObject()
     delete user.password
     return user

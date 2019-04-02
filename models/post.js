@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schemas
+const Schema = mongoose.Schema
 
 const postSchema = new Schema ({
     title :{
@@ -28,7 +28,8 @@ const postSchema = new Schema ({
     comments: [{
         user: {
             type: Schema.Types.ObjectId,
-            ref: "User"
+            ref: "User",
+            required: true
         },
         comment: {
             type: String,
