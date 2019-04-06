@@ -39,7 +39,8 @@ authRouter.post("/login" , (req,res,next) => {
         }
         //Does that user exist - send err "Username or password are incorrect"
         if(!user){
-            return res.status(403).send({success:false , err:"Username or password are incorrect"})
+            releaseEvents.status(403)
+            return next(new Error("Username or password are incorrect"))
         }
         
         user.checkPassword(req.body.password, (err, isMatch) => {
